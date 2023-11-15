@@ -1,4 +1,4 @@
-name: e2e-tests
+name: cypress-api-test
 on: [push]
 jobs:
   cypress-run:
@@ -8,7 +8,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress Run
         uses: cypress-io/github-action@v6
-      - name: Merge results
+        with:
+          browser: chrome
+      - name: Merge test results into one
         run: npm run report:merge
       - name: Generate results
         run: npm run report:generate
